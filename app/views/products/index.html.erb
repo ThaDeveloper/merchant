@@ -9,6 +9,7 @@
       <th><span>Title</span><br/>Description</th>
       <th>Price</th>
       <th>Stock</th>
+      <th>Buy</th>
       <th></th>
       <th></th>
       <th colspan="3"></th>
@@ -22,11 +23,12 @@
         <td><span class="product_title"><%= product.title %></span><%= product.description %></td>
         <td><%= print_price(product.price) %></td>
         <% if product.stock > 0 %>
-        <td> <span class="in_stock"> <%= print_stock(product.stock) %></span></td>
+        <td> <span class="in_stock"> <%= print_stock(product.stock) %>  (<%= product.stock %>) </span></td>
         <% else %>
          <td> <span class="out_stock"> <%= print_stock(product.stock) %></span></td>
-         <% end %>
-        <td><%= link_to 'View', product %></td>
+        <% end %>
+        <td><%= button_to "Add to Cart", order_items_path(product_id: product.id) %></td>
+         <td><%= link_to 'View', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
