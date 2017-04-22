@@ -4,7 +4,11 @@ class OrderItemsController < ApplicationController
 
   # GET /order_items
   # GET /order_items.json
-
+def index
+  @order_item = OrderItem.all
+end
+def show
+end
 
   # GET /order_items/1/edit
   def edit
@@ -14,6 +18,7 @@ class OrderItemsController < ApplicationController
   # POST /order_items.json
   def create
       @order_item = @order.order_items.new(quantity: 1, product_id: params[:product_id])
+       #@order_item.quantity += 1
     respond_to do |format|
       if @order_item.save
         format.html { redirect_to @order, notice: 'Successfully added product to cart.' }
@@ -44,7 +49,7 @@ class OrderItemsController < ApplicationController
   def destroy
     @order_item.destroy
     respond_to do |format|
-      format.html { redirect_to order_items_url, notice: 'Order item was successfully destroyed.' }
+      format.html { redirect_to @order_item, notice: 'Order item was successfully deleted.' }
       format.json { head :no_content }
     end
   end

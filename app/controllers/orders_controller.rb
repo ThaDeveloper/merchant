@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.html { redirect_to products_url, notice: 'Order was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -66,6 +66,13 @@ class OrdersController < ApplicationController
     def set_order
       @order = Order.find(params[:id])
     end
+    #def empty
+      #@order_item.destroy_all
+      #respond_to do |format|
+        #format.html { redirect_to orders_url, notice: 'Order was successfully deleted.' }
+        #format.json { head :no_content }
+      #end
+    #end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
