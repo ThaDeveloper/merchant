@@ -21,11 +21,7 @@
         <td><%= image_tag "products/#{product.image_url}" %></td>
         <td><span class="product_title"><%= product.title %></span><%= product.description %></td>
         <td><%= print_price(product.price) %></td>
-        <% if product.stock > 0 %>
-        <td> <span class="in_stock"> <%= print_stock(product.stock) %>  (<%= product.stock %>) </span></td>
-        <% else %>
-         <td> <span class="out_stock"> <%= print_stock(product.stock) %></span></td>
-        <% end %>
+        <td><%= print_stock(product.stock) %></td>
         <td><%= button_to "Add to Cart", order_items_path(product_id: product.id) %></td>
          <td><%= link_to 'View', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>

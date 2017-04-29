@@ -12,14 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :product_id %>
-    <%= f.number_field :product_id %>
+    <%= @order_item.product.title %>
   </div>
 
-  <div class="field">
-    <%= f.label :order_id %>
-    <%= f.number_field :order_id %>
-  </div>
+
 
   <div class="field">
     <%= f.label :quantity %>
