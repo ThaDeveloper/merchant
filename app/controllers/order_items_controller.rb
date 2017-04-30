@@ -18,7 +18,7 @@ end
   # POST /order_items
   # POST /order_items.json
   def create
-    @order_item = @order.order_items.find_or_initialize_by(quantity: 1, product_id: params[:product_id])
+    @order_item = @order.order_items.find_or_initialize_by(quantity: 1, product_id: params[:product_id], order_id: @order.id)
     #  @order_item = @order.order_items.new(quantity: 1, product_id: params[:product_id])
        @order_item.quantity += 1
     respond_to do |format|
@@ -61,13 +61,8 @@ end
   end
 
   private
-  def load_order
-    @order = Order.find_or_initialize_by(id: session[:order_id], status: "unsubmitted")
-    if @order.new_record?
-      @order.save!
-      session[:order_id] = @order.id
-    end
-  end
+  
+
 
 
     # Use callbacks to share common setup or constraints between actions.
