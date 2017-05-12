@@ -1,0 +1,28 @@
+<table>
+  <thead>
+    <tr>
+	  <th>Title</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Subtotal</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <body>
+  <% @order.order_items.each do |item| %>
+	<tr>
+		<td><%= item.product.title %></td>
+		<td><%= item.quantity %></td>
+		<td><%= print_price(item.product.price) %></td>
+		<td><%= print_price(item.subtotal) %></td>
+	</tr>
+  <% end %>
+  <tr>
+	<td>Total</td>
+	<td></td>
+	<td></td>
+	<td><%= print_price(@order.total) %></td>
+  </tr>
+  </body>
+</table>
+<%= link_to "Confirm Order", root_url %>

@@ -1,10 +1,10 @@
 <h1>Your Order</h1>
-
+<%= form_for @order do |f| %>
 <table>
   <tr>
     <th>Customer</th>
     <td><%= @order.user.name if @order.user %></td>
-    
+
   </tr>
   <tr>
     <th>Status:</th>
@@ -42,7 +42,17 @@
   <tr>
   <td colspan="5"> Total </td> <td> <%= print_price(@order.total) %></td>
 </tr>
+<tr>
+  <th>Shipping To:</th>
+  <td>
+    <%= f.select :address_id, current_user.addresses.collect{|a| [a.to_s, a.id]} %>
+    <%= link_to 'Add Address', new_address_path %>
+  </td>
+</tr>
+
 </table>
+<%= f.submit "Submit Order" %>
+<% end %>
 <%= link_to "Empty Cart", @order, data: { confirm: 'Are you sure?' }, method: :delete %><br/><br/>
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
